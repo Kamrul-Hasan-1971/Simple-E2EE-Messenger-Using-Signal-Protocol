@@ -1,0 +1,32 @@
+<div>
+  <p>Alice</p>
+  <div style="height: 400px ; width: 400px;">
+    <button *ngIf="!sessionStarted" (click)="createAliceIdentity()">Create Id For Alice</button><br><br>
+    <button *ngIf="bobHasIdentity && aliceHasIdentity && !sessionStarted" (click)="startSessionWithBob()">Start session
+      with Bob</button><br><br>
+    <p *ngIf="sessionStarted"> Session has started</p>
+
+    <input type="text" id="aliceText" #aliceText>
+    <button *ngIf="sessionStarted" (click)="encryptAndSendMessageToBob(aliceText.value)">Send Text</button>
+    <ul>
+      <li *ngFor="let message of aliceInbox">
+        {{message}}
+      </li>
+    </ul>
+  </div>
+  <div style="height: 400px ; width: 400px;">
+    <p>Bob</p>
+    <button *ngIf="!sessionStarted" (click)="createBobIdentity()">Create Id For Bob</button><br><br>
+    <button *ngIf="bobHasIdentity && aliceHasIdentity && !sessionStarted" (click)="startSessionWithAlice()">Start
+      session with Alice</button><br><br>
+    <p *ngIf="sessionStarted"> Session has started</p>
+
+    <input type="text" id="bobText" #bobText>
+    <button *ngIf="sessionStarted" (click)="encryptAndSendMessageToAlice(bobText.value)">Send Text</button>
+    <ul>
+      <li *ngFor="let message of bobInbox">
+        {{message}}
+      </li>
+    </ul>
+  </div>
+</div>
